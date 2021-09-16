@@ -2,6 +2,4 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
-#Rama Brandy
-#Roy se llama Roy
-
+#Mi branch Chava
