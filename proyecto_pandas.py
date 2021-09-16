@@ -78,4 +78,10 @@ plt.bar(x4,y4, color="green")
 labels= ax4.get_xticklabels()
 plt.setp(labels,rotation=45, horizontalalignment="right")
 
+plt.subplots_adjust(left=0.1,
+                    bottom=0.1, 
+                    right=0.9, 
+                    top=0.9, 
+                    wspace=0.4, 
+                    hspace=0.4)
 plt.show()
