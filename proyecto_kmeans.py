@@ -4,12 +4,24 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
-#importar tabla de excel
+#Hola
 tabla=pd.read_excel("fiestas_data.xlsx")
 
-#Generar subtablas Monterrey
+#generar subtablas Monterrey
 tablaMonterrey=tabla.groupby('zona_invitado').get_group('Monterrey')
-#print(tablaMonterrey)
-listaInvitados_mty=
+
+df = pd.DataFrame(tablaMonterrey, columns = ['total_fiesta','cantidad_invitados'])
+
+print (df)
+plt.scatter (df["x"],df["y"])
+plt.show()
+
+kmeans = KMeans(n_clusters=3).fit(df)
+centroids = kmeans.cluster_centers_
+print(centroids)
+
+plt.scatter(df["x"], df["y"],c=kmeans.labels_.astype(float),s=50,alpha=0.5)
+plt.scatter(centroids[:,0],centroids[:,1],c="red",s=50)
+plt.show()
 
 
