@@ -89,5 +89,5 @@ plt.subplots_adjust(left=0.1,
                     right=0.9, 
                     top=0.9, 
                     wspace=0.4, 
-                    hspace=0.4)
+                    hspace=0.7)
 plt.show()
