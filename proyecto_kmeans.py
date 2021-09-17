@@ -40,14 +40,14 @@ for i in tablaMes_mty:
 
 ax=plt.subplot(221)
 
-Data={'x':tablaMonterrey['cantidad_invitados'], 'y': tablaMes2_mty}
+Data={'x':tablaMes2_mty, 'y': tablaMonterrey['cantidad_invitados']}
 
 df = pd.DataFrame(Data, columns = ['x','y'])
 
 #print(df)
 
-plt.xlabel("INVITADOS")
-plt.ylabel("MES")
+plt.xlabel("MES")
+plt.ylabel("INVITADOS")
 plt.title("INVITADOS VS MES")
 
 plt.scatter (df['x'], df['y'])
@@ -58,8 +58,8 @@ print(centroids)
 
 ax=plt.subplot(222)
 
-plt.xlabel("INVITADOS")
-plt.ylabel("MES")
+plt.xlabel("MES")
+plt.ylabel("INVITADOS")
 plt.title("INVITADOS VS MES")
 
 plt.scatter(df['x'], df['y'], c=kmeans.labels_.astype(float), s=50, alpha=0.5)
