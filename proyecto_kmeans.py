@@ -7,6 +7,8 @@ tabla=pd.read_excel("fiestas_data.xlsx")
 
 #Generar subtablas Monterrey
 tablaMonterrey=tabla.groupby('zona_invitado').get_group('Monterrey')
+
+#kmeans Brandy
 tablaMes_mty = tablaMonterrey['mes']
 tablaMes2_mty = []
 
@@ -36,18 +38,84 @@ for i in tablaMes_mty:
     elif i == 'Diciembre':
         tablaMes2_mty.append(12)
 
+ax=plt.subplot(221)
+
 Data={'x':tablaMonterrey['cantidad_invitados'], 'y': tablaMes2_mty}
 
 df = pd.DataFrame(Data, columns = ['x','y'])
 
-print(df)
-plt.scatter (df['x'], df['y'])
-plt.show()
+#print(df)
 
-kmeans = KMeans(n_clusters=7).fit(df)
+plt.xlabel("INVITADOS")
+plt.ylabel("MES")
+plt.title("INVITADOS VS MES")
+
+plt.scatter (df['x'], df['y'])
+
+kmeans = KMeans(n_clusters=4).fit(df)
 centroids = kmeans.cluster_centers_
 print(centroids)
 
+ax=plt.subplot(222)
+
+plt.xlabel("INVITADOS")
+plt.ylabel("MES")
+plt.title("INVITADOS VS MES")
+
 plt.scatter(df['x'], df['y'], c=kmeans.labels_.astype(float), s=50, alpha=0.5)
 plt.scatter(centroids[:,0],centroids[:,1],c="red",s=50)
+
+#Kmeans Chavy
+ax=plt.subplot(223)
+
+Data2={'x':tabla['cantidad_invitados'],'y': tabla['total_comida']}
+df2=pd.DataFrame(Data2,columns=['x','y'])
+
+plt.xlabel("INVITADOS")
+plt.ylabel("COMIDA")
+plt.title("INVITADOS VS COMIDA")
+
+plt.scatter(df2['x'],df2['y'])
+
+kmeans=KMeans(n_clusters=3).fit(df2)
+centroids=kmeans.cluster_centers_
+print(centroids)
+
+ax=plt.subplot(224)
+
+plt.xlabel("INVITADOS")
+plt.ylabel("COMIDA")
+plt.title("INVITADOS VS COMIDA")
+
+plt.scatter(df2['x'],df2['y'],c=kmeans.labels_.astype(float), s=50,alpha=0.5)
+plt.scatter(centroids[:,0],centroids[:,1],c='red',s=50)
+
+plt.subplots_adjust(left=0.1,
+                    bottom=0.1, 
+                    right=0.9, 
+                    top=0.9, 
+                    wspace=0.4, 
+                    hspace=0.4)
 plt.show()
+
+#Kmeans Royi
+
+#se genera un data frame con el costo total de la fiesta 
+df3 = pd.DataFrame(tablaMonterrey, columns = ['cantidad_invitados','total_fiesta'])
+
+#genera 4 clusters acorde a los valores de df para definir los centroides
+kmeans = KMeans(n_clusters=4).fit(df3)
+centroids = kmeans.cluster_centers_
+print(centroids)
+
+plt.xlabel("INVITADOS")
+plt.ylabel("PRECIO TOTAL")
+plt.title("PRECIO TOTAL DE LA FIESTA")
+
+#dibuja la gràfica con los puntos del nùmero de invitados contra el costo total
+plt.scatter(df3['cantidad_invitados'], df3['total_fiesta'],c=kmeans.labels_.astype(float),s=50,alpha=0.5)
+plt.scatter(centroids[:,0],centroids[:,1],c="red",s=50)
+
+plt.show()
+
+
