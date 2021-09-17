@@ -13,13 +13,19 @@ tabla=pd.read_excel("fiestas_data.xlsx")
 #generar subtablas Monterrey
 tablaMonterrey=tabla.groupby('zona_invitado').get_group('Monterrey')
 lista_salones_mty=tablaMonterrey['salon']
+print('El salon más utlizado en Monterrey es:',np.max(lista_salones_mty),'\n')
 lista_cuotas_mty=tablaMonterrey['couta_salon']
+print('El promedio de coutas por salon en Monterrey es:',np.mean(lista_cuotas_mty),'\n')
 lista_mes_mty = tablaMonterrey["mes"]
+print('El mes más común para eventos en Monterrey es:',np.max(lista_mes_mty),'\n')
 lista_invitados_mty = tablaMonterrey["cantidad_invitados"]
+print('El promedio de invitados en eventos de Monterrey es:',np.mean(lista_invitados_mty),'\n')
 lista_atendientes_mty = tablaMonterrey["num_atendientes"]
 lista_platillo_mty = tablaMonterrey["platillo"]
+print('El platillo más consumido en eventos de Monterrey es:',np.max(lista_platillo_mty),'\n')
 lista_precioPlatillo_mty = tablaMonterrey["precio_platillo"]
 lista_show_mty = tablaMonterrey["show"]
+print('El show más pedido para eventos de Monterrey es:',np.max(lista_show_mty),'\n')
 lista_precioShow_mty = tablaMonterrey["precio_show"]
 
 #Imprimiendo valores estadisticos
