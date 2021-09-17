@@ -13,7 +13,7 @@ tabla=pd.read_excel("fiestas_data.xlsx")
 tablaMonterrey=tabla.groupby('zona_invitado').get_group('Monterrey')
 
 #se genera un data frame con el costo total de la fiesta 
-df = pd.DataFrame(tablaMonterrey, columns = ['total_fiesta','cantidad_invitados'])
+df = pd.DataFrame(tablaMonterrey, columns = ['cantidad_invitados','total_fiesta'])
 
 #genera 4 clusters acorde a los valores de df para definir los centroides
 kmeans = KMeans(n_clusters=4).fit(df)
